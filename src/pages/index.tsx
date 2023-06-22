@@ -1,9 +1,8 @@
 import { ThemeProvider } from 'next-themes'
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 import Render from "@/components/Render";
 
 import { useState } from "react";
+import Frame from '@/components/Frame';
 
 type buttonProps = {
     buttonText: string,
@@ -28,11 +27,9 @@ export const Button = ({ buttonColor, onClick, buttonText }: buttonProps) => {
 const Home = () => {
     return (
         <ThemeProvider>
-            <div className="flex flex-col items-center mx-[40px] md:mx-auto my-0">
-                <Navbar />
+            <Frame>
                 <Render />
-                <Footer />
-            </div>
+            </Frame>
         </ThemeProvider>
     )
 }

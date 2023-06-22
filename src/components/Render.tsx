@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import BreadCrumb from './BreadCrumb';
 import Image from 'next/image';
 import RenderMarkdown from '@/hoc/RenderMarkdown';
+import CardGroup from './CardGroup';
 
 
 export type SingleImageFormatType = {
@@ -233,9 +234,36 @@ export const Blog = ({ blog }: { blog: BlogType }) => {
 
 export const Render = () => {
     return (
-        <div>
-            Home page
-        </div>
+        <CardGroup
+            // use placeholder image
+            data={[
+                {
+                    title: 'Blog 1',
+                    description: 'This is a blog',
+                    imageURL: 'https://via.placeholder.com/150x150'
+                },
+                {
+                    title: 'Blog 2',
+                    description: 'This is a blog',
+                    imageURL: 'https://via.placeholder.com/150x150'
+                },
+                {
+                    title: 'Blog 3',
+                    description: 'This is a blog',
+                    imageURL: 'https://via.placeholder.com/150x150'
+                },
+                {
+                    title: 'Blog 4',
+                    description: 'This is a blog',
+                    imageURL: 'https://via.placeholder.com/150x150'
+                },
+                {
+                    title: 'Blog 5',
+                    description: 'This is a blog',
+                    imageURL: 'https://via.placeholder.com/150x150'
+                }
+            ]}
+        />
     )
 }
 
