@@ -1,0 +1,110 @@
+<web-header class="site-header" role="banner">
+	<div class="cluster gutter-base">
+		<button
+			class="icon-button tooltip color-core-text md:hidden-yes"
+			aria-labelledby="menu-button-toolip"
+			data-alignment="right"
+			data-open-drawer-button=""
+			role="tooltip"
+		>
+			<span class="tooltip__content" id="menu-button-tooltip"
+				>Open menu</span
+			></button
+		><a class="site-header__brand brand" href="/"> </a>
+	</div>
+	<web-navigation-drawer type="standard" tabindex="-1">
+		<nav
+			aria-label="main navigation"
+			class="site-header__nav"
+			data-drawer-container=""
+		>
+			<a
+				data-category="Site-Wide Custom Events"
+				data-label="Tab: About"
+				class="site-header__link"
+				href="/about/"
+			>
+				About </a
+			><a
+				data-category="Site-Wide Custom Events"
+				data-label="Tab: Blog"
+				class="site-header__link"
+				href="/blog/"
+			>
+				Blog </a
+			><a
+				data-category="Site-Wide Custom Events"
+				data-label="Tab: Learn"
+				class="site-header__link"
+				href="/learn/"
+			>
+				Learn </a
+			><a
+				data-category="Site-Wide Custom Events"
+				data-label="Tab: Explore"
+				class="site-header__link"
+				href="/explore/"
+			>
+				Explore </a
+			><a
+				data-category="Site-Wide Custom Events"
+				data-label="Tab: Patterns"
+				class="site-header__link"
+				href="/patterns/"
+			>
+				Patterns </a
+			><a
+				data-category="Site-Wide Custom Events"
+				data-label="Tab: Case Studies"
+				class="site-header__link"
+				href="/tags/case-study/"
+			>
+				Case studies </a
+			><button
+				class="icon-button tooltip color-core-text md:hidden-yes"
+				data-drawer-close-button=""
+			>
+				<span class="tooltip__content">Close</span>
+			</button>
+		</nav>
+	</web-navigation-drawer>
+	<div class="site-header__actions cluster">
+		<div class="site-header__search">
+			<web-search
+				i18n='{"search":{"en":"Search"},"open_search":{"en":"Open search"},"all_articles":{"en":"All articles"},"close_search":{"en":"Close search"}}'
+				results-id="search-main-results"
+			>
+				<button
+					class="web-search__open-btn icon-button color-mid-text"
+					aria-label="Open search"
+				></button>
+				<div
+					class="web-search__input-wrapper"
+					role="combobox"
+					aria-controls="web-search__input"
+					aria-haspopup="listbox"
+					aria-expanded="false"
+					aria-owns="search-main-results-list"
+				>
+					<input
+						id="web-search__input"
+						class="web-search__input"
+						type="text"
+						role="searchbox"
+						autocomplete="off"
+						aria-autocomplete="list"
+						aria-controls="search-main-results-list"
+						aria-label="All articles"
+						placeholder="Search"
+					/>
+				</div> </web-search
+			><web-search-results id="search-main-results">
+				<div
+					role="listbox"
+					aria-hidden="true"
+					id="search-main-results-list"
+				></div>
+			</web-search-results>
+		</div>
+	</div>
+</web-header>
