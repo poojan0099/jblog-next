@@ -2,11 +2,22 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTheme } from 'next-themes';
 import Link from 'next/link'
-import React from 'react'
-import ThemeSwitch from './ThemeSwitch';
-import NoSSR from '@/hoc/NoSSR';
+import React, { useEffect } from 'react'
+import { useLocalStorage } from "usehooks-ts";
 
 const Navbar = () => {
+    const { setTheme, theme } = useTheme();
+
+    useEffect(() => {
+        const localTheme = localStorage.getItem("theme") || "light";
+        setTheme(localTheme);
+    }, [setTheme]);
+
+
+    const themeChangeHandler = () => {
+        const newTheme = theme === "light" ? "dark" : "light";
+        setTheme(newTheme);
+    };
 
     const navLinks = [
         {
@@ -48,9 +59,9 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">
-                    Jblog-next
-                </a>
+                <Link href="/" className="btn btn-ghost normal-case text-xl dark:test " >
+                    Jain Blog
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -68,9 +79,18 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <NoSSR>
-                    <ThemeSwitch />
-                </NoSSR>
+                <label className="swap swap-rotate">
+                    {/* <!-- this hidden checkbox controls the state --> */}
+                    <input type="checkbox" onClick={themeChangeHandler} />
+
+                    {/* <!-- sun icon --> */}
+                    <FontAwesomeIcon
+                        icon={faMoon}
+                        className="swap-off w-7 h-7"
+                    />
+
+                    <FontAwesomeIcon icon={faSun} className="swap-on w-7 h-7" />
+                </label>
             </div>
         </div >
     )

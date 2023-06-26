@@ -1,10 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-
+const daisy = require("daisyui");
 const tailwindTypography = require("@tailwindcss/typography");
 const plugin = require("tailwindcss/plugin");
-const daisyui = require("daisyui");
 
-// const themes = require('daisyui/src/colors/themes')
 
 const childrenSupport = ({ addVariant }) => {
     addVariant("child", "& > *");
@@ -18,10 +16,11 @@ const extendedTailwind = plugin(function ({ addComponents }) {
             justifyContent: "center",
             alignItems: "center",
         },
+        ".test": {
+            border: "1px solid black !important",
+        }
     });
 });
-
-// #a1e3ee
 
 module.exports = {
     darkMode: ["class", '[data-theme="dark"]'],
@@ -30,33 +29,8 @@ module.exports = {
         "./src/components/**/*.{js,ts,jsx,tsx}",
         "./src/app/**/*.{js,ts,jsx,tsx}",
     ],
-
-
-    // faf6fe
-
     theme: {
         extend: {
-            typography: () => ({
-                DEFAULT: {
-                    css: {
-                        "blockquote p:first-of-type::before": {
-                            content: "none",
-                        },
-                        "blockquote p:first-of-type::after": {
-                            content: "none",
-                        },
-                        "code::before": { content: "none" },
-                        "code::after": { content: "none" },
-                        // code: {
-                        // 	fontWeight: theme("fontWeight.normal"),
-                        // 	backgroundColor: theme("colors.violet.100"),
-                        // 	paddingBlock: theme("spacing")[1],
-                        // 	paddingInline: theme("spacing")[1.5],
-                        // 	borderRadius: theme("borderRadius.DEFAULT"),
-                        // },
-                    },
-                },
-            }),
             keyframes: {
                 "fade-in": {
                     from: { opacity: 0 },
@@ -68,20 +42,42 @@ module.exports = {
             },
         },
         screen: {
-            sm: 575,
-            md: 767,
-            lg: 991,
-            xl: 1199,
+            sm: 425,
+            md: 768,
+            lg: 1024,
+            xl: 1280,
             "2xl": 1440,
         },
         fontFamily: {
             satoshi: "Satoshi sans-serif",
         },
-        colors: {
-            transparent: 'transparent',
-            brightBlue: "#f8faff"
-        },
     },
 
-    plugins: [daisyui, tailwindTypography, extendedTailwind, childrenSupport],
+    daisyui: {
+        styled: true,
+        themes: [
+            {
+                light: {
+                    ...require("daisyui/src/theming/themes")[
+                    "[data-theme=light]"
+                    ],
+                },
+            },
+            {
+                dark: {
+                    ...require("daisyui/src/theming/themes")[
+                    "[data-theme=night]"
+                    ],
+                },
+            },
+        ],
+
+        base: true,
+        utils: true,
+        logs: true,
+        rtl: false,
+        prefix: "",
+    },
+
+    plugins: [tailwindTypography, extendedTailwind, daisy, childrenSupport],
 };

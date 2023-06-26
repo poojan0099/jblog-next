@@ -1,36 +1,19 @@
-import { ThemeProvider } from 'next-themes'
-import Render from "@/components/Render";
-
-import { useState } from "react";
-import Frame from '@/components/Frame';
-
-type buttonProps = {
-    buttonText: string,
-    buttonColor: string,
-    onClick: () => void
-}
-
-export const Button = ({ buttonColor, onClick, buttonText }: buttonProps) => {
-    const [counter, setCounter] = useState(0);
-
-    return (
-        <button
-            className={`btn btn-primary ${buttonColor}`}
-            onClick={onClick}
-        >
-            {buttonText} {counter}
-        </button>
-    )
-}
-
+import Render from '@/components/Render';
+import UserContext from '@/context/UserContext';
+import { useState } from 'react';
 
 const Home = () => {
+    const [text, setText] = useState("");
+
     return (
-        <ThemeProvider>
-            <Frame>
-                <Render />
-            </Frame>
-        </ThemeProvider>
+        <UserContext.Provider
+            value={{
+                text,
+                setText
+            }}
+        >
+            <Render />
+        </UserContext.Provider >
     )
 }
 

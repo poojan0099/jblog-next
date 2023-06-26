@@ -1,65 +1,13 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
-import axios from 'axios';
-import env from '@/env';
 import { useRouter } from 'next/router';
-// import slugify from 'slugify';
-import { Blog, BlogType, StrapiDataType } from '@/components/Render';
-// import useSWR from 'swr'
 import { useEffect, useState } from 'react';
-import NoSSR from '@/hoc/NoSSR';
-import Frame from '@/components/Frame';
-
-
-let config = {
-    method: 'get',
-    maxBodyLength: Infinity,
-    url: `${env.STRAPI_SERVER_URL}/api/blogs?populate=*`,
-    headers: {
-        'api_key': env.STRAPI_API_KEY
-    }
-};
-
-// Function to generate a slug from the post title
-// const generateSlug = (title: string) => {
-//     const slug = slugify(title, {
-//         lower: true,
-//         remove: /[^\w\s-]/g,
-//         replacement: '-',
-//     });
-
-//     return slug;
-// };
-
-// Function to fetch the list of posts
-const fetchPosts = async () => {
-
-    // Replace with your data fetching logic
-    const response = await axios.get(`${env.STRAPI_SERVER_URL}/api/blogs?populate=*`, {
-        headers: {
-            'api_key': env.STRAPI_API_KEY,
-        },
-    });
-
-    return response.data as StrapiDataType;
-};
-
-// function to fetch a post by id
-const fetchPostById = async (slug: string) => {
-    // Replace with your data fetching logic
-    const response = await axios.get(`${env.STRAPI_SERVER_URL}/api/blogs/${slug}?populate=*`, {
-        headers: {
-            'api_key': env.STRAPI_API_KEY,
-        },
-    });
-
-    return response.data;
-};
-
+import { SingleBlogDataType } from '@/types/type';
+import api from '@/service/api';
+import { Blog } from '@/components/Blog';
 
 
 // This is your dynamic page component
 const Page = () => {
-    const [post, setPost] = useState({} as BlogType);
+    const [post, setPost] = useState({} as SingleBlogDataType);
     const router = useRouter();
 
     useEffect(() => {
@@ -69,10 +17,9 @@ const Page = () => {
             // get path from router
             const { slug } = router.query;
 
-
-            // fetch data from strapi
-            const post = await fetchPostById(slug as string);
-            setPost(post.data as BlogType);
+            // fetch data from api
+            const blog = await api.getSingleBlog(slug as string);
+            setPost(blog);
         }
         inner();
     }, [router.isReady])
@@ -84,17 +31,19 @@ const Page = () => {
     }
 
     return (
-        <Frame>
+        <>
             {
-                post && post.attributes && (
-                    <NoSSR>
-                        <Blog
-                            blog={post as BlogType}
-                        />
-                    </NoSSR>
+                post && post.data ? (
+                    <Blog
+                        blog={post.data}
+                    />
+                ) : (
+                    <div className='flex justify-center items-center min-h-[200px] min-w-full '>
+                        <span className="loading loading-bars loading-lg"></span>
+                    </div>
                 )
             }
-        </Frame>
+        </>
     );
 };
 
