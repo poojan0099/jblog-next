@@ -1,7 +1,9 @@
+import Link from "next/link";
+
 const RenderMarkdown = ({ text }: { text: string }) => {
     const parseMarkdown = (text: string) => {
         // Split the text into lines
-        const lines = text?.split('\n');
+        const lines = text.split("\\n");
 
         // Iterate through each line and apply the Markdown rules
         const parsedLines = lines?.map((line) => {
@@ -41,17 +43,20 @@ const RenderMarkdown = ({ text }: { text: string }) => {
                 return `<${headerTag}>${headerText}</${headerTag}>`;
             }
 
+
             // Return the line as-is if no Markdown rule matches
-            return line;
+            return `${line}`
         });
 
-        return parsedLines?.join('\n\n');
+
+        return parsedLines?.join('');
     };
 
 
     const parsedText = parseMarkdown(text);
     return (
-        <div dangerouslySetInnerHTML={{ __html: parsedText }}>
+        <div
+            dangerouslySetInnerHTML={{ __html: parsedText }}>
         </div>
     );
 };

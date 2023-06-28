@@ -1,4 +1,4 @@
-import { BlogDataType, BlogListType, SingleBlogDataType, SingleBlogMetaType, SingleBlogType } from "@/types/type";
+import { BlogListType, SingleBlogDataType } from "@/types/type";
 import axios from "axios";
 
 const myaxios = axios.create({
@@ -21,6 +21,7 @@ const api = {
     getSingleBlog: async (id: string) => {
         try {
             const result = await myaxios.get(`blogs/${id}?populate=*`);
+            console.log("axios -->", result.data);
             return result.data as SingleBlogDataType;
         } catch (error: any) {
             console.log("error ->", error?.response)

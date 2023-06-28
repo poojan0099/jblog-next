@@ -47,7 +47,7 @@ export type SingleImageType = {
 }
 
 export type SingleBlogLanguageType = {
-    content: SingleImageType,
+    image: SingleImageType,
     text: string,
     lang: string
 }
@@ -65,7 +65,6 @@ export type SingleBlogType = {
         english: string,
         hindi: string,
         gujarati: string,
-        Image: SingleImageType,
         image1: SingleImageType,
         image2: SingleImageType,
         image3: SingleImageType,

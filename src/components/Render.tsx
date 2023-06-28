@@ -25,7 +25,6 @@ export const ImageComponent = ({ image }: { image: SingleImageType }) => {
     )
 }
 
-
 export const Render = () => {
     const [blogList, setBlogList] = useState<BlogListType>(BlogListDefault);
 
@@ -36,7 +35,6 @@ export const Render = () => {
         }
         inner();
     }, [])
-
 
     return (
         <>

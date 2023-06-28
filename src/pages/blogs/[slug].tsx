@@ -19,6 +19,7 @@ const Page = () => {
 
             // fetch data from api
             const blog = await api.getSingleBlog(slug as string);
+
             setPost(blog);
         }
         inner();
