@@ -95,7 +95,7 @@ export const BlogListDefault: BlogListType = {
             attributes: {
                 title: "",
                 createdAt: "",
-                image: ImageDefault,
+                Image: ImageDefault,
             }
         },
         {
@@ -103,7 +103,7 @@ export const BlogListDefault: BlogListType = {
             attributes: {
                 title: "",
                 createdAt: "",
-                image: ImageDefault,
+                Image: ImageDefault,
             }
         }
     ],
