@@ -4,12 +4,15 @@ import { useState } from 'react';
 
 const Home = () => {
     const [text, setText] = useState("");
+    const [slug, setSlug] = useState("");
 
     return (
         <UserContext.Provider
             value={{
                 text,
-                setText
+                setText,
+                slug,
+                setSlug
             }}
         >
             <Render />

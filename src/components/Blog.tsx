@@ -1,13 +1,13 @@
 import { SingleBlogType, MultipleBlogLanguageType } from "@/types/type";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ImageComponent } from "./Render";
 import Link from "next/link";
 import RenderMarkdown from "@/hoc/RenderMarkdown";
+import UserContext from "@/context/UserContext";
 
 const RenderText = ({ text }: { text: string }) => {
     const [references, setReferences] = useState<string[]>([]);
-
-    console.log(references);
+    const { slug, setSlug } = useContext(UserContext);
 
     useEffect(() => {
         const answer = [];
@@ -16,7 +16,9 @@ const RenderText = ({ text }: { text: string }) => {
         for (let i = 0; i < text?.length || 0; i++) {
             if (text[i] === "[") {
                 if (subtext) {
-                    answer.push(subtext);
+                    if (subtext.length > 2) {
+                        answer.push(subtext);
+                    }
                 }
                 subtext = "";
 
@@ -34,14 +36,15 @@ const RenderText = ({ text }: { text: string }) => {
         }
 
         if (answer.length === 0 || subtext.length > 0) {
-            answer.push(subtext);
+            if (subtext.length > 2) {
+                answer.push(subtext);
+            }
         }
 
         setReferences(answer);
     }, [])
 
     return (
-
         <>
             {
                 // answer = ['[1](aconite)', 'is a poison', '[2](plant)']
@@ -64,7 +67,11 @@ const RenderText = ({ text }: { text: string }) => {
                                 key={index}
                                 href={id}
                                 passHref={true}
-                                className="border-dashed border-[1px] border-blue-500 p-1 rounded-md text-black backlink "
+                                onClick={() => {
+                                    setSlug(id);
+                                    console.log("slug -->", id);
+                                }}
+                                className="p-1 text-primary backlink "
                             >
                                 {referenceText + ' '}
                             </Link>
@@ -150,7 +157,7 @@ export const Blog = ({ blog }: { blog: SingleBlogType }) => {
                 {new Date(blog?.attributes?.createdAt).toLocaleDateString("en")}
             </p>
 
-            <section className="">
+            <section >
                 {
                     blogData.map((attribute, index) => {
                         return (

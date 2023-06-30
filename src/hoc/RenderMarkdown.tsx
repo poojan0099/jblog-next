@@ -55,9 +55,9 @@ const RenderMarkdown = ({ text }: { text: string }) => {
 
     const parsedText = parseMarkdown(text);
     return (
-        <div
+        <span
             dangerouslySetInnerHTML={{ __html: parsedText }}>
-        </div>
+        </span>
     );
 };
 

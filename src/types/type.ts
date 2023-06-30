@@ -87,7 +87,9 @@ export type SingleBlogListType = Omit<SingleBlogType, "attributes"> & {
     attributes: {
         title: string,
         createdAt: string,
-        Image: SingleImageType
+        image1: SingleImageType,
+        image2: SingleImageType,
+        image3: SingleImageType,
     }
 }
 

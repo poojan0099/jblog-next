@@ -1,13 +1,15 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SingleBlogDataType } from '@/types/type';
 import api from '@/service/api';
 import { Blog } from '@/components/Blog';
+import UserContext from '@/context/UserContext';
 
 
 // This is your dynamic page component
 const Page = () => {
     const [post, setPost] = useState({} as SingleBlogDataType);
+    const { slug, setSlug } = useContext(UserContext);
     const router = useRouter();
 
     useEffect(() => {
@@ -15,15 +17,16 @@ const Page = () => {
 
         const inner = async () => {
             // get path from router
-            const { slug } = router.query;
+            const myslug = (router.query.slug || '') as string;
+
+            setSlug(myslug);
 
             // fetch data from api
-            const blog = await api.getSingleBlog(slug as string);
-
+            const blog = await api.getSingleBlog(myslug);
             setPost(blog);
         }
         inner();
-    }, [router.isReady])
+    }, [router.isReady, slug])
 
 
     // Render loading state if slug is not available yet

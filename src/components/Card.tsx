@@ -9,8 +9,9 @@ const Card = ({
     imageURL: string
 }) => {
     return (
-        <div className="max-w-[350px] md:max-w-sm rounded-[10px] p-[20px] shadow  dark:border-[1px] dark:border-white dark:border-solid ">
-           
+        <div className="
+        flex flex-col justify-center items-center flex-wrap
+        max-w-[350px] md:max-w-sm rounded-[10px] p-[20px] shadow  dark:border-[1px] dark:border-white dark:border-solid ">
             {
                 imageURL ? (
                     <>
@@ -19,10 +20,9 @@ const Card = ({
                             alt="cake"
                             src={imageURL}
                         />
-                        <h3 className="font-bold mt-5">
+                        <h3 className="font-bold mt-5 line-clamp-2 ">
                             {title}
                         </h3>
-
                         <p className="pt-5 leading-6">
                             {new Date(createdAt).toLocaleDateString("en")}
                         </p>
@@ -35,8 +35,6 @@ const Card = ({
                     </>
                 )
             }
-
-
         </div>
     )
 }

@@ -11,7 +11,7 @@ const api = {
             page = 1;
         }
         try {
-            const result = await myaxios.get(`blogs?populate=*&fields[0]=Title&fields[1]=createdAt&pagination[1]=${page}&pagination[pageSize]=10`);
+            const result = await myaxios.get(`blogs?populate=*&fields[0]=title&fields[1]=createdAt&pagination[1]=${page}&pagination[pageSize]=10&sort[0]=id`);
             return result.data as BlogListType;
         } catch (error: any) {
             console.log("error ->", error?.response)

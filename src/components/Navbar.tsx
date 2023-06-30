@@ -1,6 +1,8 @@
+import env from '@/env';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
 import Link from 'next/link'
 import React, { useEffect } from 'react'
 import { useLocalStorage } from "usehooks-ts";
@@ -59,8 +61,18 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <Link href="/" className="btn btn-ghost normal-case text-xl dark:test " >
-                    Jain Blog
+                <Link href="/" >
+                    <Image
+                        src={env.LOGO_IMAGE_URL || ''}
+                        alt={env.LOGO_IMAGE_ALT || ''}
+                        width={200}
+                        height={80}
+
+                        className="rounded-md dark:filter dark:mix-blend-difference "
+                    >
+
+
+                    </Image>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
