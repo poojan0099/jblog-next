@@ -26,7 +26,7 @@ const Page = () => {
             setPost(blog);
         }
         inner();
-    }, [router.isReady, slug])
+    }, [router.isReady, router.query.slug])
 
 
     // Render loading state if slug is not available yet

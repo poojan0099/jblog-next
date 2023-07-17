@@ -162,6 +162,7 @@ export const Blog = ({ blog }: { blog: SingleBlogType }) => {
                     blogData.map((attribute, index) => {
                         return (
                             <React.Fragment key={index}>
+
                                 {
                                     attribute.lang === language && (
                                         <>

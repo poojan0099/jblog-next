@@ -24,13 +24,14 @@ const Card = ({
                             {title}
                         </h3>
                         <p className="pt-5 leading-6">
-                            {new Date(createdAt).toLocaleDateString("en")}
+                            {createdAt && new Date(createdAt).toLocaleDateString("en")}
                         </p>
                     </>
                 ) : (
                     <>
                         <div className="min-w-[200px] min-h-[200px] grid place-content-center ">
-                            <span className="loading loading-bars loading-lg"></span>
+                            <span className="loading loading-bars loading-lg">
+                            </span>
                         </div>
                     </>
                 )

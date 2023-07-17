@@ -34,13 +34,24 @@ export const Render = () => {
             setBlogList(data);
         }
         inner();
+
+
     }, [])
 
     return (
         <>
-            <CardGroup
-                blogList={blogList}
-            />
+            {
+                blogList && blogList.data ? (
+                    <CardGroup
+                        blogList={blogList}
+                    />
+                ) : (
+                    <div className="min-w-[200px] min-h-[200px] grid place-content-center ">
+                        <span className="loading loading-bars loading-lg">
+                        </span>
+                    </div>
+                )
+            }
         </>
     )
 }

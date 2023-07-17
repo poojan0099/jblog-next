@@ -23,20 +23,12 @@ const Navbar = () => {
 
     const navLinks = [
         {
+            name: "Blog",
+            link: "/"
+        },
+        {
             name: "About",
             link: "/about/"
-        },
-        {
-            name: "Blog",
-            link: "/blog/"
-        },
-        {
-            name: "Learn",
-            link: "/learn/"
-        },
-        {
-            name: "Explore",
-            link: "/explore/"
         }
     ]
 
@@ -67,11 +59,8 @@ const Navbar = () => {
                         alt={env.LOGO_IMAGE_ALT || ''}
                         width={200}
                         height={80}
-
                         className="rounded-md dark:filter dark:mix-blend-difference "
                     >
-
-
                     </Image>
                 </Link>
             </div>
